@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vòng Quay Bữa Tối - Gia đình Tuấn Anh & Linh</title>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --bg: #f4f7f6;
+            --text: #333;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        h1 {
+            color: var(--primary);
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        p.subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        /* Wheel Styles */
+        .wheel-wrapper {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 20px;
+        }
+        canvas {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            transform: rotate(0deg);
+        }
+        .pointer {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 30px solid #e74c3c;
+            z-index: 10;
+        }
+        button.spin-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+            transition: 0.3s;
+        }
+        button.spin-btn:active {
+            transform: scale(0.95);
+        }
+        button.spin-btn:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+        /* Result Styles */
+        #result-section {
+            display: none;
+            margin-top: 25px;
+            text-align: left;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .food-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-size: 18px;
+            color: var(--primary);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        ul { padding-left: 20px; margin: 0; line-height: 1.6; }
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+        .total-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d35400;
+            text-align: right;
+            margin-top: 15px;
+        }
+        .location {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Hôm Nay Ăn Gì?</h1>
+    <p class="subtitle">Thực đơn bữa tối 4 người - Dành riêng cho mẹ Linh đi chợ</p>
+
+    <div class="wheel-wrapper">
+        <div class="pointer"></div>
+        <canvas id="wheelCanvas" width="300" height="300"></canvas>
+    </div>
+
+    <button id="spinBtn" class="spin-btn" onclick="spinWheel()">BẮT ĐẦU QUAY</button>
+
+    <div id="result-section">
+        <h2 id="res-title" style="text-align: center; margin-top: 0;"></h2>
+        <img id="res-img" class="food-img" src="" alt="Mâm cơm">
+        
+        <div class="section-title">🍽️ Thực Đơn Chi Tiết</div>
+        <ul id="res-menu"></ul>
+
+        <div class="section-title">📊 Dinh Dưỡng (TB / Người)</div>
+        <div class="nutrition-grid">
+            <div>🔥 <b>Calories:</b> <span id="res-calo"></span></div>
+            <div>🥩 <b>Protein:</b> <span id="res-protein"></span></div>
+            <div>🍚 <b>Carb:</b> <span id="res-carb"></span></div>
+            <div>🥑 <b>Fat:</b> <span id="res-fat"></span></div>
+        </div>
+
+        <div class="section-title">🛒 Shopping List (Cho 4 người)</div>
+        <p class="location">📍 Ưu tiên mua tại: Winmart Greenbay / Big C Thăng Long</p>
+        <ul id="res-shop"></ul>
+        <div class="total-price">Tổng dự kiến: <span id="res-total"></span> VNĐ</div>
+    </div>
+</div>
+
+<script>
+    // Dữ liệu 5 mâm cơm gia đình
+    const menus = [
+        {
+            name: "Set 1: Cơm Nhà Đậm Vị",
+            color: "#FF6B6B",
+            img: "https://images.unsplash.com/photo-1615486171431-7299a80e1ea7?w=500&q=80",
+            menu: ["Mặn: Thịt ba chỉ rang cháy cạnh", "Canh: Canh sườn non nấu sấu", "Rau: Rau muống luộc dầm sấu"],
+            nutrition: { calo: "620 kcal", protein: "28g", carb: "65g", fat: "25g" },
+            shopping: [
+                { item: "Thịt ba chỉ heo", qty: "500g", price: 85000 },
+                { item: "Sườn non heo", qty: "400g", price: 80000 },
+                { item: "Rau muống", qty: "1 mớ to", price: 15000 },
+                { item: "Sấu, hành, tỏi", qty: "Gia vị", price: 10000 }
+            ],
+            total: "190.000"
+        },
+        {
+            name: "Set 2: Thanh Mát Giải Nhiệt",
+            color: "#4ECDC4",
+            img: "https://images.unsplash.com/photo-1544025162-831af775dca2?w=500&q=80",
+            menu: ["Mặn: Cá chép om dưa", "Canh: Canh ngao mồng tơi", "Rau: Su hào xào tỏi"],
+            nutrition: { calo: "550 kcal", protein: "32g", carb: "60g", fat: "15g" },
+            shopping: [
+                { item: "Cá chép (làm sạch)", qty: "1 con (1kg)", price: 85000 },
+                { item: "Dưa chua", qty: "300g", price: 10000 },
+                { item: "Ngao", qty: "500g", price: 25000 },
+                { item: "Mồng tơi, Su hào", qty: "Rau củ", price: 25000 }
+            ],
+            total: "145.000"
+        },
+        {
+            name: "Set 3: Năng Lượng Thể Thao",
+            color: "#45B7D1",
+            img: "https://images.unsplash.com/photo-1558030006-450675393462?w=500&q=80",
+            menu: ["Mặn: Bò lúc lắc ớt chuông", "Canh: Canh chua thịt băm", "Rau: Salad xà lách dầu giấm"],
+            nutrition: { calo: "590 kcal", protein: "40g", carb: "50g", fat: "20g" },
+            shopping: [
+                { item: "Thịt thăn bò", qty: "500g", price: 160000 },
+                { item: "Thịt băm", qty: "150g", price: 25000 },
+                { item: "Ớt chuông, hành tây", qty: "Củ quả", price: 30000 },
+                { item: "Xà lách, cà chua bi", qty: "Salad", price: 35000 }
+            ],
+            total: "250.000"
+        },
+        {
+            name: "Set 4: Dân Dã Đưa Cơm",
+            color: "#FDCB6E",
+            img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80",
+            menu: ["Mặn: Đậu phụ nhồi thịt sốt cà", "Canh: Canh cua mướp mồng tơi", "Đồ kèm: Cà pháo muối giòn"],
+            nutrition: { calo: "510 kcal", protein: "25g", carb: "55g", fat: "18g" },
+            shopping: [
+                { item: "Đậu phụ", qty: "4 bìa", price: 12000 },
+                { item: "Thịt heo xay", qty: "300g", price: 45000 },
+                { item: "Cua đồng giã sẵn", qty: "300g", price: 40000 },
+                { item: "Mướp, mồng tơi, cà chua", qty: "Rau quả", price: 25000 },
+                { item: "Cà pháo", qty: "1 bát con", price: 10000 }
+            ],
+            total: "132.000"
+        },
+        {
+            name: "Set 5: Gọn Nhẹ Dễ Làm",
+            color: "#6C5CE7",
+            img: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&q=80",
+            menu: ["Mặn: Gà ta rang gừng", "Canh: Canh bí xanh tôm khô", "Rau: Bắp cải luộc chấm trứng"],
+            nutrition: { calo: "580 kcal", protein: "35g", carb: "50g", fat: "22g" },
+            shopping: [
+                { item: "Thịt gà ta (chặt sẵn)", qty: "800g", price: 130000 },
+                { item: "Tôm khô", qty: "50g", price: 40000 },
+                { item: "Bí xanh", qty: "1/2 quả", price: 12000 },
+                { item: "Bắp cải, gừng, trứng", qty: "Rau & Gia vị", price: 25000 }
+            ],
+            total: "207.000"
+        }
+    ];
+
+    // Vẽ bánh xe
+    const canvas = document.getElementById("wheelCanvas");
+    const ctx = canvas.getContext("2d");
+    const numSlices = menus.length;
+    const sliceAngle = (2 * Math.PI) / numSlices;
+    let currentRotation = 0;
+
+    function drawWheel() {
+        for (let i = 0; i < numSlices; i++) {
+            const startAngle = i * sliceAngle;
+            const endAngle = startAngle + sliceAngle;
+            
+            ctx.beginPath();
+            ctx.moveTo(150, 150);
+            ctx.arc(150, 150, 150, startAngle, endAngle);
+            ctx.fillStyle = menus[i].color;
+            ctx.fill();
+            ctx.stroke();
+
+            // Viết chữ lên vòng quay
+            ctx.save();
+            ctx.translate(150, 150);
+            ctx.rotate(startAngle + sliceAngle / 2);
+            ctx.textAlign = "right";
+            ctx.fillStyle = "#fff";
+            ctx.font = "bold 16px Arial";
+            ctx.fillText("Set " + (i + 1), 130, 6);
+            ctx.restore();
+        }
+    }
+    drawWheel();
+
+    // Xử lý logic quay
+    function spinWheel() {
+        const btn = document.getElementById("spinBtn");
+        btn.disabled = true;
+        document.getElementById("result-section").style.display = "none";
+
+        // Random số vòng quay (3 đến 6 vòng) + góc ngẫu nhiên
+        const spins = Math.floor(Math.random() * 4) + 3; 
+        const randomDeg = Math.floor(Math.random() * 360);
+        const totalDeg = (spins * 360) + randomDeg;
+
+        currentRotation += totalDeg;
+        canvas.style.transform = `rotate(${currentRotation}deg)`;
+
+        // Sau 4 giây (khớp với CSS transition), tính kết quả
+        setTimeout(() => {
+            const actualDeg = currentRotation % 360;
+            // Xác định phần tử trúng thưởng (bù trừ góc do vẽ từ điểm 0)
+            const normalizedDeg = (360 - actualDeg + 270) % 360; 
+            const winningIndex = Math.floor(normalizedDeg / (360 / numSlices));
+            
+            showResult(menus[winningIndex]);
+            btn.disabled = false;
+        }, 4000);
+    }
+
+    function showResult(data) {
+        document.getElementById("result-section").style.display = "block";
+        document.getElementById("res-title").innerText = data.name;
+        document.getElementById("res-img").src = data.img;
+        
+        document.getElementById("res-menu").innerHTML = data.menu.map(i => `<li>${i}</li>`).join("");
+        
+        document.getElementById("res-calo").innerText = data.nutrition.calo;
+        document.getElementById("res-protein").innerText = data.nutrition.protein;
+        document.getElementById("res-carb").innerText = data.nutrition.carb;
+        document.getElementById("res-fat").innerText = data.nutrition.fat;
+
+        document.getElementById("res-shop").innerHTML = data.shopping.map(s => 
+            `<li><b>${s.item}</b> (${s.qty}): ${s.price.toLocaleString('vi-VN')}đ</li>`
+        ).join("");
+        
+        document.getElementById("res-total").innerText = data.total;
+    }
+</script>
+</body>
+</html>
