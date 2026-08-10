@@ -39,8 +39,8 @@
         /* Wheel Styles */
         .wheel-wrapper {
             position: relative;
-            width: 280px;
-            height: 280px;
+            width: 300px;
+            height: 300px;
             margin: 0 auto 20px;
         }
         canvas {
@@ -165,7 +165,7 @@
 </div>
 
 <script>
-    // Dữ liệu 5 mâm cơm gia đình
+    // Dữ liệu 10 mâm cơm gia đình
     const menus = [
         {
             name: "Set 1: Cơm Nhà Đậm Vị",
@@ -185,7 +185,7 @@
             name: "Set 2: Thanh Mát Giải Nhiệt",
             color: "#4ECDC4",
             img: "https://images.unsplash.com/photo-1544025162-831af775dca2?w=500&q=80",
-            menu: ["Mặn: Cá chép om dưa", "Canh: Canh ngao mồng tơi", "Rau: Su hào xào tỏi"],
+            menu: ["Mặn: Cá chép om dưa", "Canh: Canh ngao nấu mồng tơi", "Rau: Su hào xào tỏi"],
             nutrition: { calo: "550 kcal", protein: "32g", carb: "60g", fat: "15g" },
             shopping: [
                 { item: "Cá chép (làm sạch)", qty: "1 con (1kg)", price: 85000 },
@@ -228,15 +228,88 @@
             name: "Set 5: Gọn Nhẹ Dễ Làm",
             color: "#6C5CE7",
             img: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500&q=80",
-            menu: ["Mặn: Gà ta rang gừng", "Canh: Canh bí xanh tôm khô", "Rau: Bắp cải luộc chấm trứng"],
+            menu: ["Mặn: Gà ta rang gừng", "Canh: Canh bí xanh nấu tôm khô", "Rau: Bắp cải luộc chấm trứng"],
             nutrition: { calo: "580 kcal", protein: "35g", carb: "50g", fat: "22g" },
             shopping: [
                 { item: "Thịt gà ta (chặt sẵn)", qty: "800g", price: 130000 },
                 { item: "Tôm khô", qty: "50g", price: 40000 },
                 { item: "Bí xanh", qty: "1/2 quả", price: 12000 },
-                { item: "Bắp cải, gừng, trứng", qty: "Rau & Gia vị", price: 25000 }
+                { item: "Bắp cải, trứng", qty: "Rau & Gia vị", price: 25000 }
             ],
             total: "207.000"
+        },
+        {
+            name: "Set 6: Tôm Rang Đậm Đà",
+            color: "#E17055",
+            img: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=500&q=80",
+            menu: ["Mặn: Tôm đồng rang thịt ba chỉ", "Canh: Canh ngao nấu dứa chua", "Rau: Hoa thiên lý xào tỏi"],
+            nutrition: { calo: "570 kcal", protein: "30g", carb: "55g", fat: "20g" },
+            shopping: [
+                { item: "Tôm đồng/Tôm thẻ", qty: "300g", price: 75000 },
+                { item: "Thịt ba chỉ", qty: "200g", price: 35000 },
+                { item: "Ngao", qty: "500g", price: 25000 },
+                { item: "Hoa thiên lý", qty: "1 hộp", price: 30000 },
+                { item: "Dứa, cà chua", qty: "Gia vị canh", price: 15000 }
+            ],
+            total: "180.000"
+        },
+        {
+            name: "Set 7: Chả Quấn Thơm Lừng",
+            color: "#00B894",
+            img: "https://images.unsplash.com/photo-1600850056064-a8b380df8395?w=500&q=80",
+            menu: ["Mặn: Chả thịt lợn cuốn lá lốt", "Canh: Canh rau ngót nấu giò sống", "Rau: Măng tây xào tỏi"],
+            nutrition: { calo: "610 kcal", protein: "27g", carb: "50g", fat: "28g" },
+            shopping: [
+                { item: "Thịt nạc vai xay", qty: "400g", price: 60000 },
+                { item: "Giò sống", qty: "150g", price: 25000 },
+                { item: "Lá lốt", qty: "2 mớ", price: 10000 },
+                { item: "Rau ngót", qty: "1 mớ", price: 15000 },
+                { item: "Măng tây", qty: "1 bó", price: 45000 }
+            ],
+            total: "155.000"
+        },
+        {
+            name: "Set 8: Mực Giòn Sần Sật",
+            color: "#0984E3",
+            img: "https://images.unsplash.com/photo-1599084993091-1cb5c0721cc6?w=500&q=80",
+            menu: ["Mặn: Mực ống xào cần tỏi tây", "Canh: Canh cải bẹ nấu cá rô đồng", "Rau: Nộm su hào tai heo giòn"],
+            nutrition: { calo: "530 kcal", protein: "35g", carb: "45g", fat: "12g" },
+            shopping: [
+                { item: "Mực ống", qty: "500g", price: 140000 },
+                { item: "Cần tây, tỏi tây", qty: "Gia vị xào", price: 15000 },
+                { item: "Cá rô đồng gỡ sẵn", qty: "250g", price: 50000 },
+                { item: "Rau cải bẹ, Su hào", qty: "Rau củ", price: 30000 }
+            ],
+            total: "235.000"
+        },
+        {
+            name: "Set 9: Bữa Cơm Tuổi Thơ",
+            color: "#FD79A8",
+            img: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500&q=80",
+            menu: ["Mặn: Trứng đúc thịt băm", "Canh: Canh hến nấu bầu", "Rau: Rau lang xào tỏi"],
+            nutrition: { calo: "540 kcal", protein: "25g", carb: "55g", fat: "20g" },
+            shopping: [
+                { item: "Trứng gà", qty: "5 quả", price: 18000 },
+                { item: "Thịt heo băm", qty: "200g", price: 30000 },
+                { item: "Ruột hến", qty: "200g", price: 30000 },
+                { item: "Bầu", qty: "1 quả", price: 15000 },
+                { item: "Rau lang", qty: "1 mớ", price: 10000 }
+            ],
+            total: "103.000"
+        },
+        {
+            name: "Set 10: Nem Rán Cuối Tuần",
+            color: "#E84393",
+            img: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500&q=80",
+            menu: ["Mặn: Nem rán truyền thống Hà Nội", "Canh: Canh mọc nấu nấm hương rau củ", "Rau: Quả lặc lè luộc chấm muối vừng"],
+            nutrition: { calo: "650 kcal", protein: "26g", carb: "60g", fat: "30g" },
+            shopping: [
+                { item: "Nguyên liệu gói nem", qty: "Thịt, miến, mộc nhĩ...", price: 100000 },
+                { item: "Giò sống (làm mọc)", qty: "200g", price: 30000 },
+                { item: "Rau củ nấu canh", qty: "Su hào, súp lơ...", price: 25000 },
+                { item: "Quả lặc lè", qty: "300g", price: 20000 }
+            ],
+            total: "175.000"
         }
     ];
 
@@ -265,8 +338,8 @@
             ctx.rotate(startAngle + sliceAngle / 2);
             ctx.textAlign = "right";
             ctx.fillStyle = "#fff";
-            ctx.font = "bold 16px Arial";
-            ctx.fillText("Set " + (i + 1), 130, 6);
+            ctx.font = "bold 13px Arial"; // Giảm cỡ chữ một chút để vừa 10 ô
+            ctx.fillText("Set " + (i + 1), 138, 5);
             ctx.restore();
         }
     }
