@@ -171,14 +171,14 @@
         </div>
 
         <div class="section-title">🛒 Shopping List (Cho 4 người)</div>
-        <p class="location">📍 Ưu tiên mua tại: Winmart Greenbay / Big C Thăng Long</p>
+        <p class="location">📍 Ưu tiên mua tại: Winmart Greenbay / Big C Thăng Long (Giá ước tính cập nhật)</p>
         <ul id="res-shop"></ul>
         <div class="total-price">Tổng chi phí: <span id="res-total"></span> VNĐ</div>
     </div>
 </div>
 
 <script>
-    // Bộ 14 Combo Menu Healthy chuẩn Bắc Bộ
+    // Bộ 14 Combo Menu - Đã cập nhật giá sát thực tế tại Siêu thị
     const menus = [
         {
             name: "Set 1: Cá Hấp Sả & Dọc Mùng",
@@ -187,11 +187,11 @@
             menu: ["Mặn: Cá quả hấp sả, thì là (Không dùng dầu mỡ)", "Canh: Canh chua dọc mùng (nước hấp cá)", "Rau: Đậu bắp luộc (Chấm tương tỏi)", "Tinh bột: Cơm gạo lứt đỏ hoặc cơm trắng"],
             nutrition: { calo: "490 kcal", protein: "35g", carb: "55g", fat: "8g" },
             shopping: [
-                { item: "Cá quả (làm sạch)", qty: "800g", price: 90000 },
-                { item: "Dọc mùng, cà chua, hành thì là", qty: "Gia vị canh", price: 15000 },
-                { item: "Đậu bắp", qty: "400g", price: 20000 }
+                { item: "Cá quả (Làm sạch sẵn)", qty: "800g", price: 120000 },
+                { item: "Dọc mùng, cà chua, hành thì là", qty: "Gia vị canh", price: 30000 },
+                { item: "Đậu bắp (WinEco)", qty: "400g", price: 25000 }
             ],
-            total: "125.000"
+            total: "175.000"
         },
         {
             name: "Set 2: Bắp Bò & Bí Đao",
@@ -200,11 +200,11 @@
             menu: ["Mặn: Bắp bò luộc sả gừng (chấm mắm gừng nhạt)", "Canh: Bí đao nấu tôm nõn", "Rau: Rau muống luộc dầm sấu", "Tinh bột: Cơm trộn hạt kê hoặc cơm trắng"],
             nutrition: { calo: "510 kcal", protein: "38g", carb: "60g", fat: "12g" },
             shopping: [
-                { item: "Thịt nạc bắp bò", qty: "500g", price: 150000 },
-                { item: "Bí đao + Tôm nõn giã", qty: "1 quả + 100g", price: 40000 },
-                { item: "Rau muống + sấu", qty: "1 mớ", price: 15000 }
+                { item: "Bắp bò (MEATDeli/Nhập khẩu)", qty: "500g", price: 180000 },
+                { item: "Bí đao + Tôm nõn khô xịn", qty: "Canh", price: 55000 },
+                { item: "Rau muống (WinEco) + sấu", qty: "1 mớ", price: 20000 }
             ],
-            total: "205.000"
+            total: "255.000"
         },
         {
             name: "Set 3: Chả Áp Chảo & Nấm",
@@ -213,12 +213,12 @@
             menu: ["Mặn: Chả lá lốt áp chảo (thăn lợn & thăn bò, nồi chiên KD)", "Canh: Cải ngọt thịt băm", "Rau: Nấm hương tươi xào súp lơ xanh (dầu ô-liu)", "Tinh bột: Cơm trắng hoặc gạo lứt mềm"],
             nutrition: { calo: "530 kcal", protein: "32g", carb: "50g", fat: "16g" },
             shopping: [
-                { item: "Thịt thăn bò + thăn lợn", qty: "400g", price: 100000 },
-                { item: "Lá lốt, mộc nhĩ", qty: "Gia vị", price: 10000 },
-                { item: "Cải ngọt", qty: "1 bó", price: 15000 },
-                { item: "Nấm hương tươi + Súp lơ xanh", qty: "Rau củ", price: 40000 }
+                { item: "Thịt thăn bò xay + thăn lợn xay", qty: "400g", price: 115000 },
+                { item: "Lá lốt, mộc nhĩ", qty: "Gia vị", price: 15000 },
+                { item: "Cải ngọt (WinEco)", qty: "1 bó", price: 20000 },
+                { item: "Nấm hương tươi + Súp lơ xanh", qty: "Rau củ", price: 50000 }
             ],
-            total: "165.000"
+            total: "200.000"
         },
         {
             name: "Set 4: Đậu Nhồi & Canh Hến",
@@ -227,12 +227,12 @@
             menu: ["Mặn: Đậu phụ nhồi thịt nạc sốt cà chua nhạt", "Canh: Hến nấu chua khế", "Rau: Rau bí xào tỏi (1 thìa cafe dầu hạt cải)", "Tinh bột: Cơm trắng vừa phải"],
             nutrition: { calo: "480 kcal", protein: "28g", carb: "55g", fat: "14g" },
             shopping: [
-                { item: "Đậu phụ", qty: "4 bìa", price: 15000 },
-                { item: "Thịt thăn nạc xay", qty: "200g", price: 30000 },
-                { item: "Ruột hến", qty: "300g", price: 25000 },
-                { item: "Rau bí, khế, cà chua", qty: "Rau củ", price: 30000 }
+                { item: "Đậu phụ hộp sạch", qty: "1 hộp", price: 25000 },
+                { item: "Thịt thăn nạc xay (MEATDeli)", qty: "200g", price: 40000 },
+                { item: "Ruột hến làm sạch", qty: "300g", price: 45000 },
+                { item: "Rau bí (nhặt sẵn), khế, cà chua", qty: "Rau củ", price: 40000 }
             ],
-            total: "100.000"
+            total: "150.000"
         },
         {
             name: "Set 5: Tôm Rim & Cua Đồng",
@@ -241,12 +241,12 @@
             menu: ["Mặn: Tôm sú tươi rim nghệ tỏi nhạt", "Canh: Cua đồng mồng tơi rau đay mướp", "Rau: Bắp cải luộc chấm trứng dầm (chín kỹ)", "Tinh bột: Cơm gạo lứt đỏ hoặc cơm trắng"],
             nutrition: { calo: "500 kcal", protein: "34g", carb: "50g", fat: "12g" },
             shopping: [
-                { item: "Tôm sú tươi", qty: "400g", price: 140000 },
-                { item: "Cua đồng xay", qty: "300g", price: 40000 },
-                { item: "Rau đay, mồng tơi, mướp", qty: "Rau nấu canh", price: 20000 },
-                { item: "Bắp cải, trứng gà", qty: "Rau kèm", price: 20000 }
+                { item: "Tôm sú tươi đóng khay", qty: "400g", price: 150000 },
+                { item: "Cua đồng xay (Túi đông lạnh)", qty: "300g", price: 55000 },
+                { item: "Rau đay, mồng tơi, mướp", qty: "Rau nấu canh", price: 25000 },
+                { item: "Bắp cải, trứng gà (CP/Ba Huân)", qty: "Rau kèm", price: 25000 }
             ],
-            total: "220.000"
+            total: "255.000"
         },
         {
             name: "Set 6: Cá Kho Nghệ & Rau Dền",
@@ -255,12 +255,12 @@
             menu: ["Mặn: Cá quả kho nghệ gừng nhạt (không dùng mỡ heo)", "Canh: Sườn non nấu sấu (hớt sạch váng mỡ)", "Rau: Rau dền đỏ luộc chấm muối vừng đen", "Tinh bột: Cơm trắng nóng dẻo"],
             nutrition: { calo: "520 kcal", protein: "30g", carb: "55g", fat: "15g" },
             shopping: [
-                { item: "Cá quả cắt khúc", qty: "600g", price: 75000 },
-                { item: "Sườn non", qty: "300g", price: 60000 },
-                { item: "Rau dền đỏ", qty: "2 mớ", price: 15000 },
-                { item: "Sấu, nghệ, gừng", qty: "Gia vị", price: 10000 }
+                { item: "Cá quả cắt khúc", qty: "600g", price: 100000 },
+                { item: "Sườn non lợn (MEATDeli)", qty: "300g", price: 80000 },
+                { item: "Rau dền đỏ (WinEco)", qty: "2 mớ", price: 25000 },
+                { item: "Sấu, nghệ, gừng", qty: "Gia vị", price: 15000 }
             ],
-            total: "160.000"
+            total: "220.000"
         },
         {
             name: "Set 7: Gà Xé Phay & Ngót",
@@ -269,12 +269,12 @@
             menu: ["Mặn: Lườn gà hấp lá chanh xé phay (bỏ da)", "Canh: Rau ngót vò kỹ nấu thịt băm", "Rau: Khổ qua xào trứng (lòng đỏ)", "Tinh bột: Cơm trộn gạo lứt hoặc cơm trắng"],
             nutrition: { calo: "470 kcal", protein: "42g", carb: "45g", fat: "10g" },
             shopping: [
-                { item: "Lườn gà (ức gà)", qty: "500g", price: 45000 },
-                { item: "Rau ngót", qty: "2 mớ", price: 15000 },
-                { item: "Thịt thăn băm", qty: "150g", price: 20000 },
-                { item: "Khổ qua, trứng gà", qty: "Rau & Trứng", price: 25000 }
+                { item: "Lườn gà/Ức gà (CP)", qty: "500g", price: 55000 },
+                { item: "Rau ngót (WinEco)", qty: "1 khay", price: 25000 },
+                { item: "Thịt thăn băm", qty: "150g", price: 30000 },
+                { item: "Khổ qua, trứng gà", qty: "Rau & Trứng", price: 30000 }
             ],
-            total: "105.000"
+            total: "140.000"
         },
         {
             name: "Set 8: Heo Rim & Rong Biển",
@@ -283,11 +283,11 @@
             menu: ["Mặn: Thịt thăn heo nạc rim tiêu gừng nhạt", "Canh: Rong biển đậu hũ non nấm rơm", "Rau: Cải chíp luộc sốt dầu hào mỏng nhạt", "Tinh bột: Cơm trộn gạo xát dối/cơm trắng"],
             nutrition: { calo: "490 kcal", protein: "35g", carb: "55g", fat: "11g" },
             shopping: [
-                { item: "Thịt thăn heo", qty: "400g", price: 60000 },
-                { item: "Rong biển khô, đậu hũ non", qty: "Nấu canh", price: 35000 },
-                { item: "Cải chíp", qty: "2 bó", price: 15000 }
+                { item: "Thịt thăn heo sạch", qty: "400g", price: 70000 },
+                { item: "Rong biển khô, đậu hũ non", qty: "Nấu canh", price: 45000 },
+                { item: "Cải chíp (WinEco)", qty: "2 bó", price: 30000 }
             ],
-            total: "110.000"
+            total: "145.000"
         },
         {
             name: "Set 9: Cá Thu & Cải Cúc",
@@ -296,11 +296,11 @@
             menu: ["Mặn: Cá thu nướng sả ớt (Nồi chiên không dầu)", "Canh: Cải cúc nấu thịt băm", "Rau: Su su, cà rốt luộc chấm muối vừng", "Tinh bột: Cơm trắng dẻo thơm"],
             nutrition: { calo: "540 kcal", protein: "36g", carb: "50g", fat: "18g" },
             shopping: [
-                { item: "Cá thu cắt lát", qty: "400g", price: 120000 },
-                { item: "Cải cúc + thịt băm", qty: "Canh", price: 35000 },
-                { item: "Su su, cà rốt", qty: "Củ luộc", price: 20000 }
+                { item: "Cá thu cắt lát (Khay siêu thị)", qty: "400g", price: 140000 },
+                { item: "Cải cúc + thịt thăn băm", qty: "Canh", price: 45000 },
+                { item: "Su su, cà rốt", qty: "Củ luộc", price: 25000 }
             ],
-            total: "175.000"
+            total: "210.000"
         },
         {
             name: "Set 10: Bò Cần Tây & Súp Lơ",
@@ -309,12 +309,12 @@
             menu: ["Mặn: Bò mông nạc xào cần tây, tỏi", "Canh: Cà chua đậu phụ vân hoa trứng", "Rau: Súp lơ trắng luộc chấm kho quẹt nhạt", "Tinh bột: Cơm trắng dẻo thơm"],
             nutrition: { calo: "510 kcal", protein: "33g", carb: "55g", fat: "14g" },
             shopping: [
-                { item: "Thịt mông bò", qty: "400g", price: 120000 },
-                { item: "Cần tây, hành tây", qty: "Gia vị xào", price: 20000 },
-                { item: "Cà chua, đậu, trứng", qty: "Nguyên liệu canh", price: 25000 },
-                { item: "Súp lơ trắng", qty: "1 cây lớn", price: 25000 }
+                { item: "Thịt mông bò thái sẵn", qty: "400g", price: 140000 },
+                { item: "Cần tây, hành tây", qty: "Gia vị xào", price: 25000 },
+                { item: "Cà chua, đậu phụ, trứng", qty: "Nguyên liệu canh", price: 35000 },
+                { item: "Súp lơ trắng", qty: "1 cây lớn", price: 35000 }
             ],
-            total: "190.000"
+            total: "235.000"
         },
         {
             name: "Set 11: Chả Cá Lăng & Ngao",
@@ -323,12 +323,12 @@
             menu: ["Mặn: Chả cá lăng áp chảo không mỡ (hành thì là)", "Canh: Ngao tươi nấu bầu băm sợi", "Rau: Cải xoong luộc chấm muối chanh", "Tinh bột: Cơm trắng vừa phải"],
             nutrition: { calo: "520 kcal", protein: "35g", carb: "50g", fat: "16g" },
             shopping: [
-                { item: "Cá lăng thái miếng", qty: "400g", price: 130000 },
-                { item: "Ngao tươi", qty: "500g", price: 25000 },
-                { item: "Bầu", qty: "1/2 quả", price: 10000 },
-                { item: "Cải xoong, hành thì là", qty: "Rau xanh", price: 25000 }
+                { item: "Cá lăng fillet đóng khay", qty: "400g", price: 140000 },
+                { item: "Ngao tươi sạch cát", qty: "500g", price: 30000 },
+                { item: "Bầu", qty: "1/2 quả", price: 15000 },
+                { item: "Cải xoong, hành thì là", qty: "Rau xanh", price: 35000 }
             ],
-            total: "190.000"
+            total: "220.000"
         },
         {
             name: "Set 12: Bò Nấm & Canh Sườn",
@@ -337,12 +337,12 @@
             menu: ["Mặn: Thịt bò mông nạc cuộn nấm kim châm nướng", "Canh: Khoai sọ nấu sườn và rau rút", "Rau: Giá đỗ xào hành hẹ (ít dầu)", "Tinh bột: Cơm trắng dẻo"],
             nutrition: { calo: "550 kcal", protein: "30g", carb: "60g", fat: "17g" },
             shopping: [
-                { item: "Thịt bò thái mỏng", qty: "300g", price: 90000 },
-                { item: "Nấm kim châm", qty: "2 gói", price: 20000 },
-                { item: "Sườn non, khoai sọ, rau rút", qty: "Nguyên liệu canh", price: 70000 },
-                { item: "Giá đỗ, hành hẹ", qty: "Rau xào", price: 15000 }
+                { item: "Thịt bò thái mỏng (Cuộn nấm)", qty: "300g", price: 110000 },
+                { item: "Nấm kim châm", qty: "2 gói", price: 30000 },
+                { item: "Sườn non, khoai sọ, rau rút", qty: "Nguyên liệu canh", price: 90000 },
+                { item: "Giá đỗ, hành hẹ", qty: "Rau xào", price: 20000 }
             ],
-            total: "195.000"
+            total: "250.000"
         },
         {
             name: "Set 13: Cá Chép Hấp & Mướp",
@@ -351,11 +351,11 @@
             menu: ["Mặn: Cá chép nguyên con hấp bia sả hành", "Canh: Mướp hương nấu lạc giã nhỏ", "Rau: Rau muống xào tỏi (1 thìa dầu ô-liu/hạt cải)", "Tinh bột: Cơm gạo lứt hoặc cơm trắng"],
             nutrition: { calo: "530 kcal", protein: "34g", carb: "55g", fat: "15g" },
             shopping: [
-                { item: "Cá chép", qty: "1 con (~1kg)", price: 85000 },
-                { item: "Mướp hương, lạc sống", qty: "Nấu canh", price: 20000 },
-                { item: "Rau muống, bia", qty: "Rau & Gia vị", price: 25000 }
+                { item: "Cá chép (Sạch ruột)", qty: "1 con (~1kg)", price: 100000 },
+                { item: "Mướp hương, lạc sống", qty: "Nấu canh", price: 30000 },
+                { item: "Rau muống, bia lon, sả hành", qty: "Rau & Gia vị", price: 35000 }
             ],
-            total: "130.000"
+            total: "165.000"
         },
         {
             name: "Set 14: Trứng Cuộn & Canh Ngao",
@@ -364,11 +364,11 @@
             menu: ["Mặn: Trứng cuộn vân hoa mộc nhĩ thịt nạc băm", "Canh: Chua ngao nấu dứa thanh mát", "Rau: Cải bó xôi luộc vắt ráo trộn vừng rang", "Tinh bột: Cơm gạo lứt mềm/cơm trắng"],
             nutrition: { calo: "490 kcal", protein: "28g", carb: "50g", fat: "16g" },
             shopping: [
-                { item: "Trứng, thịt băm, mộc nhĩ", qty: "Nguyên liệu trứng", price: 45000 },
-                { item: "Ngao, dứa, cà chua", qty: "Nấu canh", price: 35000 },
-                { item: "Cải bó xôi, vừng", qty: "Rau luộc", price: 25000 }
+                { item: "Trứng, thịt băm, mộc nhĩ", qty: "Nguyên liệu", price: 60000 },
+                { item: "Ngao, dứa, cà chua", qty: "Nấu canh", price: 45000 },
+                { item: "Cải bó xôi (WinEco), vừng", qty: "Rau luộc", price: 35000 }
             ],
-            total: "105.000"
+            total: "140.000"
         }
     ];
 
@@ -442,7 +442,6 @@
         
         document.getElementById("res-total").innerText = data.total;
         
-        // Cuộn màn hình xuống phần kết quả
         document.getElementById("result-section").scrollIntoView({ behavior: 'smooth' });
     }
 </script>
