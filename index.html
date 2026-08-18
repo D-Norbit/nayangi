@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vòng Quay Bữa Tối - Thực Đơn Gia Đình Gấu</title>
+    <title>Vòng Quay Bữa Tối - Thực Đơn Gia Đình Tuấn Anh & Linh</title>
     <style>
         :root {
-            --primary: #2980b9;
+            --primary: #2c3e50;
             --bg: #ecf0f1;
             --text: #2c3e50;
         }
@@ -40,8 +40,8 @@
         /* Wheel Styles */
         .wheel-wrapper {
             position: relative;
-            width: 320px;
-            height: 320px;
+            width: 330px;
+            height: 330px;
             margin: 0 auto 25px;
         }
         canvas {
@@ -49,7 +49,7 @@
             height: 100%;
             border-radius: 50%;
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-            transition: transform 4.5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            transition: transform 5s cubic-bezier(0.2, 0.8, 0.2, 1);
             transform: rotate(0deg);
         }
         .pointer {
@@ -61,7 +61,7 @@
             height: 0;
             border-left: 15px solid transparent;
             border-right: 15px solid transparent;
-            border-top: 32px solid #e74c3c;
+            border-top: 35px solid #2c3e50;
             z-index: 10;
         }
         button.spin-btn {
@@ -73,7 +73,7 @@
             font-weight: bold;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
             transition: 0.3s;
         }
         button.spin-btn:active {
@@ -113,7 +113,7 @@
             border: 1px solid #e9ecef;
         }
         .goal-box {
-            background-color: #eaf2f8;
+            background-color: #f1f2f6;
             border-left: 4px solid var(--primary);
             padding: 12px 15px;
             border-radius: 6px;
@@ -145,17 +145,17 @@
 
 <div class="container">
     <h1>Bữa Tối Nhà Mình</h1>
-    <p class="subtitle">Được random 100% từ "List Cơm Nhà" yêu thích</p>
+    <p class="subtitle">20 Combo từ List Cơm Nhà (Xanh: Thanh đạm ➝ Đỏ: Đậm đà)</p>
 
     <div class="wheel-wrapper">
         <div class="pointer"></div>
-        <canvas id="wheelCanvas" width="320" height="320"></canvas>
+        <canvas id="wheelCanvas" width="340" height="340"></canvas>
     </div>
 
     <button id="spinBtn" class="spin-btn" onclick="spinWheel()">BẤM ĐỂ CHỌN MÓN</button>
 
     <div id="result-section">
-        <h2 id="res-title" style="text-align: center; margin-top: 0; color: #d35400;"></h2>
+        <h2 id="res-title" style="text-align: center; margin-top: 0; color: #2c3e50;"></h2>
         
         <div class="section-title">💡 Ghi chú Mâm cơm</div>
         <div id="res-goal" class="goal-box"></div>
@@ -179,171 +179,279 @@
 </div>
 
 <script>
-    // Bộ 12 Combo Menu được trích xuất ĐỘC QUYỀN từ Excel "List Cơm Nhà"
+    // Dữ liệu 20 Set chia theo thang độ đạm/béo (Thanh Đạm -> Cân Bằng -> Đậm Đà)
     const menus = [
+        // NHÓM THANH ĐẠM (Nhiều rau, cá hấp, luộc - Màu Xanh)
         {
-            name: "Set 1: Thịt Kho & Canh Cua",
-            color: "#FF6B6B",
-            goal: "Combo dân dã, dễ ăn, dễ làm với sự kết hợp kinh điển của thịt kho và canh cua.",
-            menu: ["Mặn: Thịt kho nhạt với trứng", "Canh: Canh cua mồng tơi mướp", "Rau: Củ quả luộc (su su, củ cải, cà rốt…)"],
-            nutrition: { calo: "550 kcal", protein: "32g", carb: "50g", fat: "22g" },
+            name: "Set 1: Chân Giò Luộc & Canh Ngót",
+            color: "#00b894", // Xanh lá đậm
+            goal: "Thanh đạm, mát gan, bổ máu. Chân giò luộc chấm mắm tỏi ớt cực kỳ tốn cơm.",
+            menu: ["Mặn: Chân giò luộc", "Canh: Rau ngót nấu thịt nạc", "Món kèm: Đậu rán"],
+            nutrition: { calo: "500 kcal", protein: "35g", carb: "45g", fat: "18g" },
             shopping: [
-                { item: "Thịt heo (MEATDeli)", qty: "400g", price: 70000 },
-                { item: "Trứng gà (Ba Huân)", qty: "5 quả", price: 18000 },
-                { item: "Cua đồng xay", qty: "300g", price: 55000 },
-                { item: "Mồng tơi, mướp, củ quả luộc", qty: "Rau củ", price: 45000 }
+                { item: "Thịt chân giò rút xương", qty: "600g", price: 110000 },
+                { item: "Thịt nạc băm", qty: "100g", price: 20000 },
+                { item: "Rau ngót", qty: "2 mớ", price: 20000 },
+                { item: "Đậu phụ", qty: "3 bìa", price: 12000 }
             ],
-            total: "188.000"
+            total: "162.000"
         },
         {
-            name: "Set 2: Cá Hồi Teriyaki & Salad",
-            color: "#4ECDC4",
-            goal: "Mâm cơm phong cách Âu-Nhật, dồi dào Omega 3 cho não bộ và cực kỳ ít mỡ xấu.",
-            menu: ["Mặn: Cá hồi Teriyaki", "Rau luộc: Lơ xanh hấp", "Món kèm: Salad tôm"],
-            nutrition: { calo: "520 kcal", protein: "40g", carb: "35g", fat: "18g" },
+            name: "Set 2: Salad Hồi & Soup",
+            color: "#00cec9", // Xanh ngọc bích
+            goal: "Bữa tối nhẹ nhàng kiểu Âu, dồi dào Omega-3 và siêu sạch, ăn không sợ nặng bụng.",
+            menu: ["Món chính: Salad cá hồi", "Canh/Soup: Soup tomyum hải sản", "Rau: Lơ xanh hấp"],
+            nutrition: { calo: "450 kcal", protein: "38g", carb: "30g", fat: "16g" },
             shopping: [
-                { item: "Cá hồi fillet tươi", qty: "400g", price: 260000 },
-                { item: "Lơ xanh (WinEco)", qty: "1 cây lớn", price: 25000 },
-                { item: "Tôm sú bóc vỏ (Làm salad)", qty: "200g", price: 80000 },
-                { item: "Xà lách, sốt teriyaki", qty: "Gia vị", price: 35000 }
+                { item: "Cá hồi tươi ăn sống/salad", qty: "300g", price: 200000 },
+                { item: "Gói gia vị tomyum + Hải sản mix", qty: "1 khay", price: 120000 },
+                { item: "Xà lách các loại, lơ xanh", qty: "Rau", price: 50000 }
             ],
-            total: "400.000"
+            total: "370.000"
         },
         {
-            name: "Set 3: Gà Rang & Canh Bí",
-            color: "#45B7D1",
-            goal: "Nhanh gọn, đưa cơm và bổ sung collagen từ sườn sụn, đạm trắng từ thịt gà.",
-            menu: ["Mặn: Gà lọc xương rang gừng", "Canh: Canh bí nấu sườn", "Rau: Bắp cải xào"],
-            nutrition: { calo: "580 kcal", protein: "38g", carb: "45g", fat: "20g" },
+            name: "Set 3: Cá Song Hấp & Mướp xào",
+            color: "#1abc9c", // Xanh ngọc
+            goal: "Hải sản tươi rói. Cá song hấp xì dầu giữ trọn vị ngọt thịt tự nhiên.",
+            menu: ["Mặn: Cá song hấp xì dầu", "Canh: Canh cua mồng tơi mướp", "Rau: Mướp xào giá đỗ"],
+            nutrition: { calo: "480 kcal", protein: "40g", carb: "45g", fat: "12g" },
             shopping: [
-                { item: "Thịt đùi/Ức gà (CP)", qty: "500g", price: 65000 },
-                { item: "Sườn non heo", qty: "300g", price: 85000 },
-                { item: "Bí xanh, bắp cải (WinEco)", qty: "Rau sạch", price: 30000 }
+                { item: "Cá song (Mú) nguyên con", qty: "800g", price: 280000 },
+                { item: "Cua đồng xay", qty: "250g", price: 50000 },
+                { item: "Mướp, mồng tơi, giá đỗ", qty: "Rau xanh", price: 35000 }
             ],
-            total: "180.000"
+            total: "365.000"
         },
         {
-            name: "Set 4: Bò Cuộn Nấm & Bầu Tôm",
-            color: "#FDCB6E",
-            goal: "Bò cuộn nấm bằng nồi chiên không dầu thơm lừng, ăn kèm canh bầu tôm thanh mát giải ngấy.",
-            menu: ["Mặn: Bò cuộn nấm kim châm", "Canh: Bầu nấu tôm tươi", "Món phụ: Đậu rán"],
-            nutrition: { calo: "510 kcal", protein: "35g", carb: "40g", fat: "21g" },
+            name: "Set 4: Ức Gà Nướng & Canh Bí",
+            color: "#2ecc71", // Xanh lá cây
+            goal: "Chuẩn bài tập thể thao: Ức gà siêu đạm kết hợp bí đỏ xào tỏi cực tốt cho não bộ.",
+            menu: ["Mặn: Ức gà nướng", "Canh: Canh bí nấu thịt nạc", "Rau: Bí đỏ xào tỏi"],
+            nutrition: { calo: "510 kcal", protein: "45g", carb: "50g", fat: "10g" },
             shopping: [
-                { item: "Ba chỉ bò/Mông bò thái lát", qty: "400g", price: 130000 },
-                { item: "Nấm kim châm", qty: "2 gói", price: 30000 },
-                { item: "Tôm tươi (Nấu canh)", qty: "200g", price: 70000 },
-                { item: "Bầu, đậu phụ", qty: "Rau & Đậu", price: 25000 }
+                { item: "Ức gà (CP/Tươi)", qty: "600g", price: 65000 },
+                { item: "Bí xanh (Nấu canh), Bí đỏ (Xào)", qty: "Củ quả", price: 35000 },
+                { item: "Thịt nạc xay", qty: "100g", price: 20000 }
+            ],
+            total: "120.000"
+        },
+        {
+            name: "Set 5: Tôm Hấp & Trứng Luộc",
+            color: "#55efc4", // Xanh nhạt
+            goal: "Thực đơn 'Cứu đói' siêu tốc nhưng lại dồi dào canxi bậc nhất từ tôm sú.",
+            menu: ["Mặn: Tôm sú hấp", "Món phụ: Trứng luộc", "Rau: Bầu nấu tôm tươi"],
+            nutrition: { calo: "470 kcal", protein: "42g", carb: "35g", fat: "14g" },
+            shopping: [
+                { item: "Tôm sú loại to", qty: "600g", price: 220000 },
+                { item: "Bầu tươi", qty: "1 quả", price: 15000 },
+                { item: "Trứng gà (Ba Huân)", qty: "4 quả", price: 15000 }
+            ],
+            total: "250.000"
+        },
+        {
+            name: "Set 6: Cá Tầm & Su Hào",
+            color: "#81ecec", // Xanh da trời nhạt
+            goal: "Cá tầm nướng riềng mẻ không béo, sụn giòn, ăn kèm su hào thanh mát.",
+            menu: ["Mặn: Cá tầm nướng riềng mẻ", "Canh: Su hào nấu canh thịt nạc", "Rau: Su hào xào trứng"],
+            nutrition: { calo: "540 kcal", protein: "35g", carb: "45g", fat: "18g" },
+            shopping: [
+                { item: "Cá tầm tươi thái khúc", qty: "600g", price: 180000 },
+                { item: "Thịt nạc băm", qty: "150g", price: 30000 },
+                { item: "Su hào, trứng, riềng mẻ", qty: "Rau & Gia vị", price: 35000 }
+            ],
+            total: "245.000"
+        },
+        
+        // NHÓM CÂN BẰNG (Gia cầm, hải sản xào, lợn, bò xào nhẹ - Màu Vàng/Cam nhạt)
+        {
+            name: "Set 7: Mực Xào & Bắp Cải",
+            color: "#ffeaa7", // Vàng nhạt
+            goal: "Mực tươi xào giòn sần sật, bổ sung nhiều kẽm. Canh cải ngọt thịt thanh nhiệt.",
+            menu: ["Mặn: Mực xào xu hào / Mực xào dưa", "Canh: Cải ngọt nấu canh thịt", "Rau: Bắp cải luộc chấm trứng"],
+            nutrition: { calo: "520 kcal", protein: "38g", carb: "50g", fat: "15g" },
+            shopping: [
+                { item: "Mực ống tươi", qty: "500g", price: 170000 },
+                { item: "Thịt thăn nạc xay", qty: "150g", price: 30000 },
+                { item: "Cải ngọt, bắp cải, trứng gà", qty: "Rau & Trứng", price: 45000 }
+            ],
+            total: "245.000"
+        },
+        {
+            name: "Set 8: Gà Luộc & Canh Chua",
+            color: "#fdcb6e", // Vàng
+            goal: "Bữa cơm 'Quốc dân' của mọi nhà. Gà luộc chấm muối tiêu chanh, thêm bát canh ngao chua.",
+            menu: ["Mặn: Gà luộc nguyên con", "Canh: Ngao nấu canh chua", "Rau: Su su xào"],
+            nutrition: { calo: "590 kcal", protein: "45g", carb: "40g", fat: "22g" },
+            shopping: [
+                { item: "Gà ta thả vườn (Làm sẵn)", qty: "1 con (1.4kg)", price: 190000 },
+                { item: "Ngao sạch", qty: "500g", price: 30000 },
+                { item: "Su su, dứa, cà chua", qty: "Rau củ", price: 35000 }
             ],
             total: "255.000"
         },
         {
-            name: "Set 5: Cá Trắm Om Dưa",
-            color: "#6C5CE7",
-            goal: "Đổi vị cực mạnh với cá trắm om dưa chua, thêm thịt băm xào ngô ngọt lạ miệng cho hai bé.",
-            menu: ["Mặn: Cá trắm om dưa", "Mặn phụ: Thịt băm xào ngô ngọt", "Rau: Rau muống luộc"],
-            nutrition: { calo: "600 kcal", protein: "45g", carb: "45g", fat: "16g" },
+            name: "Set 9: Thịt Viên Cà Chua",
+            color: "#f1c40f", // Vàng đậm
+            goal: "Thịt viên sốt chua ngọt đưa cơm cực kỳ, trẻ con đặc biệt yêu thích.",
+            menu: ["Mặn: Thịt viên sốt cà chua", "Món phụ: Đậu rán", "Rau: Bầu xào / Cải thảo xào"],
+            nutrition: { calo: "560 kcal", protein: "32g", carb: "55g", fat: "20g" },
             shopping: [
-                { item: "Cá trắm khúc giữa", qty: "600g", price: 90000 },
-                { item: "Thịt nạc băm", qty: "150g", price: 30000 },
-                { item: "Dưa chua, ngô ngọt", qty: "Nguyên liệu", price: 30000 },
-                { item: "Rau muống (WinEco)", qty: "1 mớ", price: 15000 }
+                { item: "Thịt vai xay (MEATDeli)", qty: "400g", price: 75000 },
+                { item: "Cà chua, bầu/cải thảo", qty: "Rau củ", price: 30000 },
+                { item: "Đậu phụ", qty: "4 bìa", price: 15000 }
             ],
-            total: "165.000"
+            total: "120.000"
         },
         {
-            name: "Set 6: Tôm Rim & Rau Ngót",
-            color: "#E17055",
-            goal: "Bộ ba món siêu tốt lành: Tôm giàu canxi, rau ngót giàu sắt và su hào nhiều xơ.",
-            menu: ["Mặn: Tôm nõn rim mắm tỏi", "Canh: Rau ngót nấu thịt nạc", "Rau: Su hào xào trứng"],
-            nutrition: { calo: "480 kcal", protein: "33g", carb: "38g", fat: "14g" },
+            name: "Set 10: Ngan Cháy Tỏi",
+            color: "#f39c12", // Cam nhạt
+            goal: "Đổi vị với Ngan cháy tỏi lai rai, kèm bát canh măng tiết ngọt thanh ấm bụng.",
+            menu: ["Mặn: Ngan cháy tỏi", "Canh: Canh măng tiết (từ nước ngan)", "Rau: Rau muống xào tỏi"],
+            nutrition: { calo: "620 kcal", protein: "40g", carb: "45g", fat: "25g" },
             shopping: [
-                { item: "Tôm nõn loại to", qty: "300g", price: 130000 },
-                { item: "Thịt nạc xay", qty: "150g", price: 30000 },
-                { item: "Rau ngót, su hào, trứng gà", qty: "Rau củ", price: 40000 }
+                { item: "Ngan dé (Chặt sẵn/Thui sẵn)", qty: "Nửa con", price: 150000 },
+                { item: "Măng tươi, tiết ngan", qty: "Đồ nấu canh", price: 35000 },
+                { item: "Rau muống, tỏi", qty: "Rau xanh", price: 20000 }
             ],
-            total: "200.000"
+            total: "205.000"
         },
         {
-            name: "Set 7: Đổi Vị (Bún Ngan/Vịt)",
-            color: "#00B894",
-            goal: "Bữa tối đổi gió không ăn cơm, cả nhà quây quần với mâm bún ngan và tự cuốn gỏi cuốn.",
-            menu: ["Món chính: Ngan/vịt luộc ăn cùng bún canh măng tiết", "Món ăn kèm: Gỏi cuốn (Tự cuốn)"],
-            nutrition: { calo: "650 kcal", protein: "42g", carb: "70g", fat: "22g" },
+            name: "Set 11: Tôm Rim & Cải Thảo",
+            color: "#e67e22", // Cam
+            goal: "Bữa ăn cân đối hoàn hảo đạm - xơ - tinh bột. Cải thảo hầm gà rất thanh và bổ dưỡng.",
+            menu: ["Mặn: Tôm rảo rang thịt", "Canh: Cải thảo hầm gà", "Rau: Đỗ cove xào bò"],
+            nutrition: { calo: "570 kcal", protein: "38g", carb: "45g", fat: "22g" },
             shopping: [
-                { item: "Ngan/vịt sạch (Nửa con to)", qty: "1.2kg", price: 140000 },
-                { item: "Bún tươi, măng, tiết", qty: "Đồ bún", price: 50000 },
-                { item: "Bánh tráng, rau sống làm gỏi", qty: "Đồ cuốn", price: 40000 }
+                { item: "Tôm rảo/Tôm thẻ + Ba chỉ", qty: "300g + 150g", price: 110000 },
+                { item: "Nước dùng gà + Cải thảo", qty: "Canh", price: 40000 },
+                { item: "Thịt bò nạc xào + Đỗ cove", qty: "150g + 300g", price: 70000 }
             ],
-            total: "230.000"
+            total: "220.000"
         },
         {
-            name: "Set 8: Mực Xào & Canh Ngao",
-            color: "#0984E3",
-            goal: "Mâm cơm hải sản nhẹ bụng với mực tươi xào dưa và nước canh ngao chua thanh.",
-            menu: ["Mặn: Mực xào dưa (hoặc su hào)", "Canh: Ngao hấp / Canh chua", "Rau: Cải ngồng luộc chấm trứng"],
-            nutrition: { calo: "490 kcal", protein: "36g", carb: "40g", fat: "12g" },
+            name: "Set 12: Đậu Nhồi Thịt",
+            color: "#d35400", // Cam đậm
+            goal: "Miếng đậu nhồi thịt ngọt lịm sốt cà chua ngấm gia vị, canh cá lăng nấu chua giải ngấy.",
+            menu: ["Mặn: Đậu nhồi thịt sốt cà chua", "Canh: Cá lăng nấu canh chua", "Rau: Mồng tơi xào tỏi"],
+            nutrition: { calo: "550 kcal", protein: "34g", carb: "50g", fat: "20g" },
             shopping: [
-                { item: "Mực ống tươi", qty: "500g", price: 160000 },
-                { item: "Ngao sạch cát", qty: "500g", price: 30000 },
-                { item: "Cải ngồng, dưa chua, cà chua, dứa", qty: "Rau củ", price: 45000 },
-                { item: "Trứng gà", qty: "2 quả", price: 70000 }
-            ],
-            total: "242.000"
-        },
-        {
-            name: "Set 9: Thịt Viên & Đỗ Cove Xào",
-            color: "#FD79A8",
-            goal: "Món tủ thịt viên sốt cà chua kết hợp cùng đỗ cove xào bò dồi dào chất kẽm và sắt.",
-            menu: ["Mặn: Thịt viên sốt cà chua", "Canh: Cải ngọt nấu canh cua", "Rau: Đỗ cove xào bò"],
-            nutrition: { calo: "560 kcal", protein: "38g", carb: "45g", fat: "19g" },
-            shopping: [
-                { item: "Thịt nạc vai xay", qty: "400g", price: 75000 },
-                { item: "Thịt bò xào", qty: "150g", price: 50000 },
-                { item: "Cua đồng xay", qty: "200g", price: 45000 },
-                { item: "Đỗ cove, cải ngọt, cà chua", qty: "Rau xanh", price: 40000 }
+                { item: "Thịt xay + Đậu phụ", qty: "200g + 4 bìa", price: 55000 },
+                { item: "Cá lăng thái lát/đầu đuôi", qty: "400g", price: 120000 },
+                { item: "Cà chua, dứa, mồng tơi", qty: "Rau củ", price: 35000 }
             ],
             total: "210.000"
         },
         {
-            name: "Set 10: Sườn Nướng & Soup Cua",
-            color: "#E84393",
-            goal: "Mâm cơm 'sang xịn' như nhà hàng với sườn nướng BBQ và bát soup cua ấm bụng.",
-            menu: ["Mặn: Sườn nướng", "Canh: Soup cua (Có nấm, ngô)", "Rau: Bí đỏ xào tỏi"],
-            nutrition: { calo: "610 kcal", protein: "40g", carb: "50g", fat: "22g" },
+            name: "Set 13: Gà Xào Nấm",
+            color: "#e17055", // Cam cháy
+            goal: "Thịt đùi gà xào nấm đông cô đậm đà, bát canh sườn nấu su hào cà rốt ngọt nước mộc mạc.",
+            menu: ["Mặn: Gà xào nấm", "Canh: Su hào cà rốt nấu canh sườn", "Món phụ: Trứng rán thịt"],
+            nutrition: { calo: "600 kcal", protein: "39g", carb: "45g", fat: "24g" },
             shopping: [
-                { item: "Sườn non/Sườn thăn", qty: "600g", price: 160000 },
-                { item: "Thịt ghẹ/cua bóc sẵn", qty: "1 khay", price: 90000 },
-                { item: "Ngô ngọt, nấm, trứng cút", qty: "Đồ nấu soup", price: 40000 },
-                { item: "Bí đỏ, tỏi khô", qty: "Rau xào", price: 15000 }
+                { item: "Thịt đùi gà rút xương", qty: "400g", price: 65000 },
+                { item: "Nấm tươi các loại", qty: "2 gói", price: 30000 },
+                { item: "Sườn non heo", qty: "300g", price: 85000 },
+                { item: "Thịt băm + Trứng gà, Su hào", qty: "Phụ liệu", price: 55000 }
             ],
-            total: "305.000"
+            total: "235.000"
+        },
+
+        // NHÓM ĐẬM ĐÀ (Nhiều Đạm, Béo, Nướng, Bò, Đổi món Âu - Màu Đỏ)
+        {
+            name: "Set 14: Bò Cuộn Nấm & Sủi Cảo",
+            color: "#ff7675", // Đỏ hồng
+            goal: "Thịt bò cuộn nấm kim châm bằng nồi chiên không dầu mọng nước, thêm sủi cảo hấp ăn vui miệng.",
+            menu: ["Mặn: Bò Cuộn nấm kim châm", "Món kèm: Sủi cảo", "Rau: Rau muống + dền luộc"],
+            nutrition: { calo: "620 kcal", protein: "40g", carb: "55g", fat: "25g" },
+            shopping: [
+                { item: "Thịt ba chỉ bò mỹ cuộn", qty: "500g", price: 130000 },
+                { item: "Nấm kim châm", qty: "2 gói", price: 30000 },
+                { item: "Sủi cảo đóng gói", qty: "1 gói", price: 65000 },
+                { item: "Rau muống, dền đỏ", qty: "Rau luộc", price: 20000 }
+            ],
+            total: "245.000"
         },
         {
-            name: "Set 11: Cá Chim Hấp Xì Dầu",
-            color: "#F39C12",
-            goal: "Đổi cá nước ngọt sang cá biển. Cá chim hấp xì dầu ngọt thịt, ăn không sợ béo.",
-            menu: ["Mặn: Cá chim hấp xì dầu", "Canh: Su hào cà rốt nấu canh sườn", "Rau: Cải thảo xào"],
-            nutrition: { calo: "530 kcal", protein: "35g", carb: "45g", fat: "16g" },
+            name: "Set 15: Sườn Nướng BBQ",
+            color: "#ff5252", // Đỏ tươi
+            goal: "Mâm cơm sang xịn mịn. Dải sườn nướng mỡ màng xém cạnh, lơ xanh xào bò cực nhiều chất sắt.",
+            menu: ["Mặn: Sườn nướng", "Mặn phụ: Lơ xanh xào thịt bò", "Canh: Canh cua mồng tơi mướp"],
+            nutrition: { calo: "650 kcal", protein: "42g", carb: "45g", fat: "30g" },
             shopping: [
-                { item: "Cá chim nguyên con", qty: "700g", price: 160000 },
-                { item: "Sườn heo (Nấu canh)", qty: "300g", price: 85000 },
-                { item: "Su hào, cà rốt, cải thảo", qty: "Rau củ", price: 45000 },
-                { item: "Xì dầu, hành lá, gừng", qty: "Gia vị hấp", price: 15000 }
+                { item: "Sườn thăn ngon", qty: "700g", price: 180000 },
+                { item: "Thịt bò nạc", qty: "200g", price: 65000 },
+                { item: "Cua xay", qty: "200g", price: 40000 },
+                { item: "Lơ xanh, mồng tơi, mướp", qty: "Rau củ", price: 40000 }
             ],
-            total: "305.000"
+            total: "325.000"
         },
         {
-            name: "Set 12: Đổi Món (Bún Bò Nam Bộ)",
-            color: "#8E44AD",
-            goal: "Cuối tuần lười nấu cơm, một bát Bún bò Nam bộ chua ngọt kèm sủi cảo hấp là chuẩn bài.",
-            menu: ["Món chính: Bún bò nam bộ", "Món kèm: Sủi cảo (Chiên/hấp)"],
-            nutrition: { calo: "600 kcal", protein: "38g", carb: "65g", fat: "15g" },
+            name: "Set 16: Bún Bò Nam Bộ",
+            color: "#e84393", // Đỏ tím
+            goal: "Hôm nay không ăn cơm! Món bún trộn thịt bò xào xả chua ngọt, rắc lạc rang thơm lừng.",
+            menu: ["Món chính: Bún bò nam bộ", "Món kèm: Gỏi cuốn", "Canh: Nước luộc thịt (Nếu có)"],
+            nutrition: { calo: "580 kcal", protein: "38g", carb: "70g", fat: "16g" },
             shopping: [
-                { item: "Thịt mông bò (Xào bún)", qty: "400g", price: 130000 },
-                { item: "Sủi cảo đóng gói (CJ/Cầu Tre)", qty: "1 gói", price: 65000 },
-                { item: "Bún, rau sống, giá đỗ, lạc rang", qty: "Đồ trộn bún", price: 60000 }
+                { item: "Thịt bò thăn/mông", qty: "500g", price: 160000 },
+                { item: "Bún tươi, lạc rang, hành khô", qty: "Đồ trộn bún", price: 40000 },
+                { item: "Bánh tráng, tôm, thịt luộc gỏi", qty: "Đồ gỏi", price: 80000 },
+                { item: "Xà lách, rau thơm, giá đỗ", qty: "Rau sống", price: 30000 }
             ],
-            total: "255.000"
+            total: "310.000"
+        },
+        {
+            name: "Set 17: Thịt Tảng & Cải Ngồng",
+            color: "#c0392b", // Đỏ sậm
+            goal: "Thịt heo tảng quay da giòn rụm bằng nồi chiên, ăn với cải ngồng chấm trứng chuẩn bài.",
+            menu: ["Mặn: Thịt tảng nướng nckd", "Canh: Soup cua (tuỳ tình hình)", "Rau: Cải ngồng luộc chấm trứng"],
+            nutrition: { calo: "680 kcal", protein: "38g", carb: "40g", fat: "35g" },
+            shopping: [
+                { item: "Thịt ba chỉ rút sườn dầy", qty: "600g", price: 120000 },
+                { item: "Thịt ghẹ/cua bóc, trứng cút", qty: "Soup cua", price: 90000 },
+                { item: "Cải ngồng, trứng gà", qty: "Rau luộc", price: 25000 }
+            ],
+            total: "235.000"
+        },
+        {
+            name: "Set 18: Bò Sốt Vang",
+            color: "#d63031", // Đỏ đun
+            goal: "Món tủ cực đỉnh ngày mát trời. Bò sốt vang ninh nhừ chấm bánh mỳ, ăn kèm thịt băm ngô ngọt.",
+            menu: ["Mặn: Bò sốt vang (Ăn kèm bánh mỳ)", "Mặn phụ: Thịt băm xào ngô ngọt", "Rau: Bắp cải luộc chấm trứng"],
+            nutrition: { calo: "660 kcal", protein: "40g", carb: "60g", fat: "24g" },
+            shopping: [
+                { item: "Diềm thăn / Nạm bò", qty: "600g", price: 160000 },
+                { item: "Gia vị sốt vang, khoai tây, cà rốt", qty: "Đồ nấu vang", price: 40000 },
+                { item: "Thịt băm, ngô ngọt", qty: "Đồ xào ngô", price: 40000 },
+                { item: "Bắp cải, bánh mỳ", qty: "Đồ kèm", price: 30000 }
+            ],
+            total: "270.000"
+        },
+        {
+            name: "Set 19: Chim Quay & Cơm",
+            color: "#b71540", // Đỏ booc-đô
+            goal: "Đặc sản siêu ngon miệng. Chim quay da bóng bẩy, thịt chắc ngọt, canh cua thanh mát giải nhiệt.",
+            menu: ["Mặn: Chim quay", "Canh: Canh cua mồng tơi mướp", "Rau: Củ quả luộc (su su, củ cải, cà rốt…)"],
+            nutrition: { calo: "650 kcal", protein: "45g", carb: "45g", fat: "28g" },
+            shopping: [
+                { item: "Chim bồ câu ra ràng (Sạch)", qty: "2 con", price: 150000 },
+                { item: "Cua xay", qty: "250g", price: 50000 },
+                { item: "Mồng tơi, củ quả thập cẩm", qty: "Rau củ", price: 40000 }
+            ],
+            total: "240.000"
+        },
+        {
+            name: "Set 20: Tự Hưởng (Pizza & Gà Rán)",
+            color: "#833471", // Tím đỏ
+            goal: "TGI Friday! Bữa tối cuối tuần thả phanh 'Cheat Meal' chiều lòng 2 cô con gái rượu.",
+            menu: ["Món chính: Pizza (Tự nướng hoặc Order)", "Món kèm: Gà rán", "Rau: Salad thịt bò / Salad tôm"],
+            nutrition: { calo: "850 kcal", protein: "35g", carb: "80g", fat: "40g" },
+            shopping: [
+                { item: "Pizza đế mua sẵn + Topping", qty: "2 đế", price: 150000 },
+                { item: "Cánh/đùi gà làm sạch (Chiên xù)", qty: "500g", price: 65000 },
+                { item: "Thịt bò ngon + Salad mix", qty: "Salad bò", price: 100000 },
+                { item: "Bột chiên xù, phô mai dăm", qty: "Gia vị", price: 50000 }
+            ],
+            total: "365.000"
         }
     ];
 
@@ -359,19 +467,31 @@
             const endAngle = startAngle + sliceAngle;
             
             ctx.beginPath();
-            ctx.moveTo(160, 160);
-            ctx.arc(160, 160, 160, startAngle, endAngle);
+            ctx.moveTo(170, 170);
+            ctx.arc(170, 170, 170, startAngle, endAngle);
             ctx.fillStyle = menus[i].color;
             ctx.fill();
             ctx.stroke();
 
+            // Kẻ viền trắng mỏng ngăn cách giữa các ô
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "#ffffff";
+            ctx.stroke();
+
             ctx.save();
-            ctx.translate(160, 160);
+            ctx.translate(170, 170);
             ctx.rotate(startAngle + sliceAngle / 2);
             ctx.textAlign = "right";
-            ctx.fillStyle = "#fff";
-            ctx.font = "bold 12px Arial"; 
-            ctx.fillText("Set " + (i + 1), 145, 4);
+            
+            // Nếu ô màu quá sáng (như vàng nhạt) thì dùng chữ đen, ngược lại dùng chữ trắng
+            if (i >= 6 && i <= 8) {
+                ctx.fillStyle = "#333";
+            } else {
+                ctx.fillStyle = "#fff";
+            }
+            
+            ctx.font = "bold 11px Arial"; 
+            ctx.fillText("Set " + (i + 1), 160, 4);
             ctx.restore();
         }
     }
@@ -396,12 +516,17 @@
             
             showResult(menus[winningIndex]);
             btn.disabled = false;
-        }, 4500);
+        }, 5000);
     }
 
     function showResult(data) {
         document.getElementById("result-section").style.display = "block";
-        document.getElementById("res-title").innerText = data.name;
+        
+        const titleEl = document.getElementById("res-title");
+        titleEl.innerText = data.name;
+        // Đổi màu tiêu đề kết quả theo màu của ô quay trúng (nếu không quá sáng)
+        titleEl.style.color = data.color === "#ffeaa7" ? "#e67e22" : data.color;
+
         document.getElementById("res-goal").innerText = data.goal;
         
         document.getElementById("res-menu").innerHTML = data.menu.map(i => `<li>${i}</li>`).join("");
